@@ -11,9 +11,20 @@ export default function Home() {
   const [showModal, setShowModal] = useState(true);
   const [innerWidth, setInnerWidth] = useState(0);
 
+  const [vid, setVid] = useState("");
+
   useEffect(() => {
     if (id) {
       // Fetch user data based on the id
+      const fetchData = async () => {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/${id}`
+        );
+        const result = await response.json();
+        setVid(result.vimeo_id);
+      };
+
+      fetchData();
       console.log(id);
     }
   }, [id]);
@@ -79,7 +90,7 @@ export default function Home() {
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
-          setVidId("");
+          setVid("");
         }}
         style={appliedStyles}
         // contentLabel="Player Modal"
@@ -94,7 +105,7 @@ export default function Home() {
           </button>
         </div>
         <Player
-          url={id}
+          url={vid}
           onClose={() => {
             setShowModal(false);
           }}
