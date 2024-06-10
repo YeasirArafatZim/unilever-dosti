@@ -17,11 +17,20 @@ export default function Home() {
     if (id) {
       // Fetch user data based on the id
       const fetchData = async () => {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/${id}`
-        );
-        const result = await response.json();
-        setVid(result.vimeo_id);
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/${id}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const result = await response.json();
+          setVid(result.vimeo_id);
+        } catch (err) {
+          console.log(err);
+        }
       };
 
       fetchData();
