@@ -3,6 +3,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import Player from "@/components/Player/Player";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -34,7 +35,8 @@ export default function Home() {
       };
 
       fetchData();
-      console.log(id);
+    } else {
+      toast.error("User Id not given");
     }
   }, [id]);
   useEffect(() => {

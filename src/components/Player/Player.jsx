@@ -7,6 +7,7 @@ import { IoMdPlay } from "react-icons/io";
 import { IoMdPause } from "react-icons/io";
 import { FiVolume, FiVolume1, FiVolume2, FiVolumeX } from "react-icons/fi";
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 export default function Player({ url, onClose }) {
   const player = useRef();
@@ -140,6 +141,9 @@ export default function Player({ url, onClose }) {
           }}
           onEnded={() => {
             onClose();
+          }}
+          onError={() => {
+            toast.error("Video not Found");
           }}
           volume={volume}
           onProgress={handleProgress}
