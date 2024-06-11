@@ -27,6 +27,10 @@ export default function Home() {
               },
             }
           );
+          console.log(response);
+          if (response.status == 404) {
+            toast.error("User id not found");
+          }
           const result = await response.json();
           setVid(result.vimeo_id);
         } catch (err) {
@@ -75,7 +79,7 @@ export default function Home() {
     content: {
       top: "auto",
       left: "0%",
-      bottom: "30%",
+      bottom: `${vid ? "30%" : "50%"}`,
       backgroundColor: "#1a202c",
       border: "none",
       borderRadius: "8px",
@@ -115,12 +119,14 @@ export default function Home() {
             &times;
           </button>
         </div>
-        <Player
-          url={vid}
-          onClose={() => {
-            setShowModal(false);
-          }}
-        />
+        {vid ? (
+          <Player
+            url={vid}
+            onClose={() => {
+              setShowModal(false);
+            }}
+          />
+        ) : null}
       </ReactModal>
     </main>
   );
