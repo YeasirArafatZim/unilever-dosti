@@ -142,9 +142,9 @@ export default function Player({ url, onClose }) {
           onEnded={() => {
             onClose();
           }}
-          onError={() => {
-            toast.error("Video not Found");
-          }}
+          // onError={() => {
+          //   toast.error("Video not Found");
+          // }}
           volume={volume}
           onProgress={handleProgress}
           onDuration={handleDuration}
