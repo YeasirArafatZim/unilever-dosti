@@ -115,10 +115,12 @@ export default function Player({ url, onClose }) {
           controls={false}
           url={`https://player.vimeo.com/video/${url}`}
           // Disable download button
+          playsinline
           config={{
             file: {
               attributes: {
                 controlsList: "nodownload",
+                playsinline: true,
               },
             },
             vimeo: {
